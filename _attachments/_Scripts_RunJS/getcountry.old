@@ -1,0 +1,32 @@
+// Using obsidian
+import * as obsidian from 'obsidian';
+
+// this plugin
+const runJS = this;
+
+const url = require('url');
+
+new Notice("Hello");
+
+let lat = 51.11
+let lng = 4.19
+let username = "djo4ever"
+let url = "http://api.geonames.org/countryCode?lat=" + lat + "&lng=" + lng + "&username=" + username;
+
+async function fetchData() {
+    try {
+      const response = await fetch(url);
+      const result = await response.text(); // Or use response.json()
+      return result;
+    } catch (error) {
+      console.error("ERROR: ", error);
+      throw error; // Rethrow the error for proper handling
+    }
+  }
+
+
+// Usage:
+fetchData().then(result => {
+    // Do something with the result
+    console.log(result);
+  });
